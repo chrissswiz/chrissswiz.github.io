@@ -231,6 +231,9 @@
 
 </div>
 
+  <span id="jinrishici-sentence">正在加载今日诗词....</span>
+  <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+  
   </header>
 
   <main>
@@ -368,13 +371,13 @@
       
         jQuery.ajax({
           type: 'GET',
-          url: 'v1.hitokoto.cn',
+          url: 'https://v1.jinrishici.com/all.json',
           headers: {},
           dataType: 'json',
           success: function(result) {
             var apiText;
             if (result) {
-              var keys = 'hitokoto'.split(',');
+              var keys = 'data,content'.split(',');
               if (result instanceof Array) {
                 result = result[0];
               }
@@ -392,7 +395,7 @@
           },
           error: function(xhr, status, error) {
             if (error) {
-              console.error('Failed to request v1.hitokoto.cn:', error);
+              console.error('Failed to request https://v1.jinrishici.com/all.json:', error);
             }
             typing(text);
           }
